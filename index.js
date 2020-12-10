@@ -157,10 +157,17 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(array, rating) {
+    const reviewsArray = [];
+    for (let i=0; i<array.length; i++){
+      if (rating <= array[i]['rating'] && array[i]['rating'] < (rating +1)){
+        reviewsArray.push(array[i]);
+      }
+    }
+    return reviewsArray;
   }
 
+//console.log(getReviewByRating(reviews, 4));
   
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
@@ -175,9 +182,18 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(array) {
+  const longArrays = [];
+  for (let i=0; i<array.length; i++){
+    let words = array[i]['feedback'].split(" ");
+    if(words.length > 15){
+      longArrays.push(array[i]);
+    }
   }
+  return longArrays;
+}
+
+//console.log(getLongReviews(reviews));
   
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
@@ -198,10 +214,18 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odometer /* How many miles driven */) {
+    return {odometer, drive: function(distance){
+      this.odometer += distance;
+      }
+    }
 }
+//create car1, with odometer at 1500
+let car1 = carMaker(1500);
+//call function drive, add 5000 to odometer
+car1.drive(5000);
+//log result should be 6500
+console.log(car1['odometer']);
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
